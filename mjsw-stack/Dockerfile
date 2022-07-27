@@ -14,7 +14,7 @@ ENV TAMDIR ${MGDODIR}/tam
 ENV GATDIR /mjsw/GAT
 ENV LD_LIBRARY_PATH ${ORDIR}/lib:${MGDODIR}/lib:${GATDIR}/lib:${TAMDIR}/lib:${LD_LIBRARY_PATH}
 ENV PATH /mjsw/mjrdb_Utils:${ORDIR}/Applications:/mjsw/MJOR/:${MGDODIR}/bin:${GATDIR}/Apps:${GATDIR}/Scripts:${PATH}
-ENV ROOT_INCLUDE_PATH ${CLHEP_INCLUDE_DIR}:$MGDODIR/Base:$MGDODIR/Gerda:$MGDODIR/GerdaTransforms:$MGDODIR/Majorana:$MGDODIR/MJDB:$MGDODIR/Root:$MGDODIR/Tabree:$MGDODIR/Tools:$MGDODIR/Transforms:$TAMDIR:$TAMDIR/inc:$GATDIR/BaseClasses:$GATDIR/MGTEventProcessing:$GATDIR/MGOutputMCRunProcessing:$GATDIR/SiggenWrapper
+ENV ROOT_INCLUDE_PATH ${CLHEP_INCLUDE_DIR}:$MGDODIR/Base:$MGDODIR/CrystalGeometry:$MGDODIR/Gerda:$MGDODIR/GerdaTransforms:$MGDODIR/Majorana:$MGDODIR/MJDB:$MGDODIR/Root:$MGDODIR/Tabree:$MGDODIR/Tools:$MGDODIR/Transforms:$TAMDIR:$TAMDIR/inc:$GATDIR/BaseClasses:$GATDIR/MGTEventProcessing:$GATDIR/MGOutputMCRunProcessing:$GATDIR/SiggenWrapper
 #
 # bake in these paths for MJDDATADIR, PYTHONDIR - good only on NERSC systems
 # user will need to re-define for local machines when necessary
@@ -38,8 +38,8 @@ RUN ./configure  --prefix=`pwd` --enable-majorana-all CXXFLAGS=-std=c++11 \
 #
 # add siggen
 #
-RUN mkdir -p /mjsw/icpc_siggen
-COPY icpc_siggen /mjsw/icpc_siggen/.
+#RUN mkdir -p /mjsw/icpc_siggen
+#COPY icpc_siggen /mjsw/icpc_siggen/.
 #ENV SIGGENDIR /mjsw/icpc_siggen
 #
 # GAT
@@ -49,6 +49,3 @@ COPY GAT /mjsw/GAT/.
 WORKDIR $GATDIR
 RUN make clean \
   && make
-
-#
-#WORKDIR /mjsw
